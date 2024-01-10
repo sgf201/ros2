@@ -1,0 +1,11 @@
+stages:
+  - deploy
+
+deploy_html:
+  stage: deploy
+  script:
+    - echo "Built Html:"
+    - pwd
+    - cp ros2.repos ~/qiuzhanpeng/cross
+    - cd ~/qiuzhanpeng/cross
+    - bash enterCross.sh
