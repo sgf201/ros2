@@ -11,6 +11,7 @@ deploy_html:
     #输入密码到sudo当中，后续便不需要继续执行此命令了
     - echo "sss" | sudo -S bash enterCross.sh 
     - cd /etc
+    - ls
     - rm -r nros rosbuild log
     - cp ~/qiuzhanpeng/cross/ros2.repos ./
     - vcs import --input ros2.repos src
