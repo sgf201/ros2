@@ -8,4 +8,5 @@ deploy_html:
     - pwd
     - cp ros2.repos ~/qiuzhanpeng/cross
     - cd ~/qiuzhanpeng/cross
-    - bash enterCross.sh
+    - sudo -S cat ~/qiuzhanpeng/password 
+    - sudo bash enterCross.sh
