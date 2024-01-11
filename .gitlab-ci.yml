@@ -9,11 +9,5 @@ deploy_html:
     - cp ros2.repos ~/qiuzhanpeng/cross
     - cd ~/qiuzhanpeng/cross
     #输入密码到sudo当中，后续便不需要继续执行此命令了
-    - echo "sss" | sudo -S bash enterCross.sh 
-    - cd /opt
-    - ls
-    - rm -r nros rosbuild log
-    - cp ~/qiuzhanpeng/cross/ros2.repos ./
-    - vcs import --input ros2.repos src
-    #开始编译
-    - colcon build --base-paths "src" --build-base "rosbuild" --install-base "nros" --parallel-workers 1 --merge-install --packages-skip ros1_bridge --event-handlers console_cohesion+ console_package_list+ --cmake-args -DBUILD_TESTING=OFF --no-warn-unused-cli -DCMAKE_BUILD_TYPE=RelWithDebInfo -DINSTALL_EXAMPLES=OFF -DSECURITY=ON -DAPPEND_PROJECT_NAME_TO_INCLUDEDIR=ON
+    - echo "sss" | sudo -S bash enterCross_auto.sh 
+    - echo "all done!"
