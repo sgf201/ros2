@@ -10,5 +10,8 @@ deploy_html:
     - cd ~/qiuzhanpeng/cross
     #输入密码到sudo当中，后续便不需要继续执行此命令了
     - echo "sss" | sudo -S bash enterCross_auto.sh 
-    - echo "all done!"
+    - echo "done!"
+    #复制docker文件夹的内容到public做准备
+    - docker cp cb8b3be9f4ef:/opt/nros-$(date +%Y%m).tar.gz /public/ReleaseMiddleWare
+    - docker cp cb8b3be9f4ef:/opt/ros3rd-$(date +%Y%m).tar.gz /public/ReleaseMiddleWare
   timeout: 4h
