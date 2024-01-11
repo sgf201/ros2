@@ -11,4 +11,4 @@ deploy_html:
     #输入密码到sudo当中，后续便不需要继续执行此命令了
     - echo "sss" | sudo -S bash enterCross_auto.sh 
     - echo "all done!"
-  timeout: 3h 30m
+  timeout: 4h
