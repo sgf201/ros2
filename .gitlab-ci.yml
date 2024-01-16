@@ -3,6 +3,8 @@ stages:
 
 deploy_html:
   stage: deploy
+  tags:
+    - 0.0.1
   script:
     - echo "Built Html:"
     - pwd
