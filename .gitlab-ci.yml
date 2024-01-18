@@ -6,7 +6,7 @@ deploy_html:
   tags:
     - 0.0.1
   script:
-    - echo "Built Html:"
+    - echo "Built R1nros:"
     - pwd
     - cp ros2.repos ~/qiuzhanpeng/cross
     - cd ~/qiuzhanpeng/cross
