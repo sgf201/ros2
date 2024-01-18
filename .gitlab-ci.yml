@@ -13,6 +13,7 @@ deploy_html:
     #输入密码到sudo当中，后续便不需要继续执行此命令了
     - echo "sss" | sudo -S bash enterCross_auto.sh 
     - echo "done!"
+    - rm /public/ReleaseMiddleWare/R1nrosInstall-$(date +%Y%m).tar.gz 
     #复制docker文件夹的内容到public做准备
     - docker cp cb8b3be9f4ef:/opt/R1nrosInstall-$(date +%Y%m).tar.gz /public/ReleaseMiddleWare
   timeout: 12h
