@@ -24,4 +24,8 @@ deploy_html:
     #复制docker文件夹的内容到public做准备
     - docker cp cb8b3be9f4ef:/opt/R1nrosInstall-$(date +%Y%m).tar.gz /public/ReleaseMiddleWare
     -  docker cp ecb744de6d50:/opt/x86_nros_install-$(date +%Y%m).tar.gz /public/ReleaseMiddleWare
+    #进入到pubilc文件夹，并生成sha256文件
+    - cd /public/ReleaseMiddleWare/
+    - sha256sum R1nrosInstall-$(date +%Y%m).tar.gz > R1nrosInstall-$(date +%Y%m).tar.gz.sha256
+    - sha256sum x86_nros_install-$(date +%Y%m).tar.gz > R1nrosInstall-$(date +%Y%m).tar.gz.sha256
   timeout: 12h
