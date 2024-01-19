@@ -6,14 +6,22 @@ deploy_html:
   tags:
     - 0.0.1
   script:
-    - echo "Built R1nros:"
+    - echo "Built R1nros&x86:"
     - pwd
     - cp ros2.repos ~/qiuzhanpeng/cross
     - cd ~/qiuzhanpeng/cross
     #输入密码到sudo当中，后续便不需要继续执行此命令了
+    #开始编译arm上的nros
     - echo "sss" | sudo -S bash enterCross_auto.sh 
     - echo "done!"
+    #开始编译x86上的nros
+    - cd ~/qiuzhanpeng/x86_compiler
+    - echo "sss" | sudo -S bash compiler.sh 
+    - echo "done!"
+    #删除重复的压缩包
     - rm /public/ReleaseMiddleWare/R1nrosInstall-$(date +%Y%m).tar.gz 
+    - rm /public/ReleaseMiddleWare/x86_nros_install-$(date +%Y%m).tar.gz 
     #复制docker文件夹的内容到public做准备
     - docker cp cb8b3be9f4ef:/opt/R1nrosInstall-$(date +%Y%m).tar.gz /public/ReleaseMiddleWare
+    -  docker cp ecb744de6d50:/opt/x86_nros_install-$(date +%Y%m).tar.gz /public/ReleaseMiddleWare
   timeout: 12h
