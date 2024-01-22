@@ -29,7 +29,8 @@ deploy_html:
     - sha256sum R1nrosInstall-$(date +%Y%m).tar.gz > R1nrosInstall-$(date +%Y%m).tar.gz.sha256
     - sha256sum x86_nros_install-$(date +%Y%m).tar.gz > x86_nros_install-$(date +%Y%m).tar.gz.sha256
     #删除原目录下的arm交叉编译的文件包，并从docker里面取出新的文件包
-    - rm -r /home/songguangfa/qiuzhanpeng/arm
+    - sudo rm -r /home/songguangfa/qiuzhanpeng/arm
+    - sudo rm -r /home/songguangfa/qiuzhanpeng/arm.tar.gz
     - docker cp cb8b3be9f4ef:/root/arm.tar.gz /home/songguangfa/qiuzhanpeng/
     - tar -xzf /home/songguangfa/qiuzhanpeng/arm.tar.gz
     #生成images，并导出docker
