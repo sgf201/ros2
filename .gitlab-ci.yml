@@ -1,7 +1,7 @@
 stages:
   - deploy
 
-deploy_html:
+deploy:
   stage: deploy
   tags:
     - 0.0.1
