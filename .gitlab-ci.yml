@@ -27,7 +27,7 @@ deploy_html:
     #进入到pubilc文件夹，并生成sha256文件
     - cd /public/ReleaseMiddleWare/
     - sha256sum R1nrosInstall-$(date +%Y%m).tar.gz > R1nrosInstall-$(date +%Y%m).tar.gz.sha256
-    - sha256sum x86_nros_install-$(date +%Y%m).tar.gz > R1nrosInstall-$(date +%Y%m).tar.gz.sha256
+    - sha256sum x86_nros_install-$(date +%Y%m).tar.gz > x86_nros_install-$(date +%Y%m).tar.gz.sha256
     #删除原目录下的arm交叉编译的文件包，并从docker里面取出新的文件包
     - rm -r /home/songguangfa/qiuzhanpeng/arm
     - docker cp cb8b3be9f4ef:/root/arm.tar.gz /home/songguangfa/qiuzhanpeng/
