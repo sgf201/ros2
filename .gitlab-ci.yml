@@ -39,4 +39,4 @@ deploy:
     - cd /public/ReleaseMiddleWare
     - docker save arm_cross:build > arm_cross.tar 
     - docker rmi arm_cross:build
-  timeout: 12h
+  timeout: 24h
