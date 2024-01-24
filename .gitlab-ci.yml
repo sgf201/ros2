@@ -13,11 +13,11 @@ deploy:
     - cd /home/songguangfa/qiuzhanpeng/cross
     #输入密码到sudo当中，后续便不需要继续执行此命令了
     #开始编译arm上的nros
-    - echo "sss" | sudo -S bash enterCross_auto.sh 
+    - echo "Nova2023" | sudo -S bash enterCross_auto.sh 
     - echo "done!"
     #开始编译x86上的nros
     - cd /home/songguangfa/qiuzhanpeng/x86_compiler
-    - echo "sss" | sudo -S bash compiler.sh 
+    - echo "Nova2023" | sudo -S bash compiler.sh 
     - echo "done!"
     #删除重复的压缩包
     - rm /public/ReleaseMiddleWare/R1nrosInstall-$(date +%Y%m).tar.gz 
