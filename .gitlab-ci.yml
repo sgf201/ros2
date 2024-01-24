@@ -4,7 +4,7 @@ stages:
 deploy:
   stage: deploy
   tags:
-    - dockerV1
+    - shellV2
   script:
     - echo "Built R1nros&x86:"
     - pwd
