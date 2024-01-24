@@ -8,16 +8,15 @@ deploy:
   script:
     - echo "Built R1nros&x86:"
     - pwd
-    - docker ps -a
     #- cp ros2.repos /home/songguangfa/qiuzhanpeng/cross
     - cd /home/songguangfa/qiuzhanpeng/cross
     #输入密码到sudo当中，后续便不需要继续执行此命令了
     #开始编译arm上的nros
-    - echo "Nova2023" | sudo -S bash enterCross_auto.sh 
+    - bash enterCross_auto.sh 
     - echo "done!"
     #开始编译x86上的nros
     - cd /home/songguangfa/qiuzhanpeng/x86_compiler
-    - echo "Nova2023" | sudo -S bash compiler.sh 
+    - bash compiler.sh 
     - echo "done!"
     #删除重复的压缩包
     - rm /public/ReleaseMiddleWare/R1nrosInstall-$(date +%Y%m).tar.gz 
@@ -30,13 +29,12 @@ deploy:
     - sha256sum R1nrosInstall-$(date +%Y%m).tar.gz > R1nrosInstall-$(date +%Y%m).tar.gz.sha256
     - sha256sum x86_nros_install-$(date +%Y%m).tar.gz > x86_nros_install-$(date +%Y%m).tar.gz.sha256
     #删除原目录下的arm交叉编译的文件包，并从docker里面取出新的文件包
-    - echo "sss" | sudo rm -r /home/songguangfa/qiuzhanpeng/arm
-    - echo "sss" | sudo rm -r /home/songguangfa/qiuzhanpeng/arm.tar.gz
-    - docker cp cb8b3be9f4ef:/root/arm.tar.gz /home/songguangfa/qiuzhanpeng/
-    - cd /home/songguangfa/qiuzhanpeng/
-    - tar -xzf /home/songguangfa/qiuzhanpeng/arm.tar.gz
+    - echo "sss" | sudo rm -r /public/ReleaseMiddleWare/arm
+    - echo "sss" | sudo rm -r /public/ReleaseMiddleWare/arm.tar.gz
+    - docker cp cb8b3be9f4ef:/root/arm.tar.gz /public/ReleaseMiddleWare/
+    - tar -xzf /public/ReleaseMiddleWare/arm.tar.gz
     #生成images，并导出docker
-    - cd /home/songguangfa/qiuzhanpeng/arm
+    - cd arm
     - docker build -t arm_cross:build .
     - cd /public/ReleaseMiddleWare
     - docker save arm_cross:build > nativeCross1.5.tar 
