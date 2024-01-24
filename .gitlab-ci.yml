@@ -8,7 +8,7 @@ deploy:
   script:
     - echo "Built R1nros&x86:"
     - pwd
-    #- cp ros2.repos /home/songguangfa/qiuzhanpeng/cross
+    - cp ros2.repos /public/ReleaseMiddleWare
     - cd /home/songguangfa/qiuzhanpeng/cross
     #输入密码到sudo当中，后续便不需要继续执行此命令了
     #开始编译arm上的nros
