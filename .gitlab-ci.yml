@@ -32,11 +32,12 @@ deploy:
     - echo "sss" | sudo rm -r /home/songguangfa/qiuzhanpeng/arm
     - echo "sss" | sudo rm -r /home/songguangfa/qiuzhanpeng/arm.tar.gz
     - docker cp cb8b3be9f4ef:/root/arm.tar.gz /home/songguangfa/qiuzhanpeng/
+    - cd /home/songguangfa/qiuzhanpeng/
     - tar -xzf /home/songguangfa/qiuzhanpeng/arm.tar.gz
     #生成images，并导出docker
     - cd /home/songguangfa/qiuzhanpeng/arm
     - docker build -t arm_cross:build .
     - cd /public/ReleaseMiddleWare
-    - docker save arm_cross:build > nativeCross1.4.tar 
+    - docker save arm_cross:build > nativeCross1.5.tar 
     - docker rmi arm_cross:build
   timeout: 24h
