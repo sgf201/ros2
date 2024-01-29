@@ -8,15 +8,18 @@ deploy:
   script:
     - echo "Built R1nros&x86:"
     - pwd
-    - cp ros2.repos /public/ReleaseMiddleWare
-    - cd /home/songguangfa/qiuzhanpeng/cross
-    #输入密码到sudo当中，后续便不需要继续执行此命令了
+    #传输仓库的脚本到对应的docker中
+    - cd script/cross
+    - docker cp bash.sh cb8b3be9f4ef:/root/
+    - cd ../x86
+    - docker cp bash.sh  ecb744de6d50:/root/
     #开始编译arm上的nros
-    - bash enterCross_auto.sh 
+    - docker run --rm --privileged multiarch/qemu-user-static:register --reset
+    - docker start humnpu
+    - docker exec humnpu /root/bash.sh
     - echo "done!"
     #开始编译x86上的nros
-    - cd /home/songguangfa/qiuzhanpeng/x86_compiler
-    - bash compiler.sh 
+    - docker exec x86_compiler /root/bash.sh
     - echo "done!"
     #删除重复的压缩包
     - rm /public/ReleaseMiddleWare/R1nrosInstall-$(date +%Y%m).tar.gz 
