@@ -10,9 +10,9 @@ deploy:
     - pwd
     #传输仓库的脚本到对应的docker中
     - cd script/cross
-    - docker cp bash.sh cb8b3be9f4ef:/root/
+    - docker cp bash.sh 735ed56afa2b:/root/
     - cd ../x86
-    - docker cp bash.sh  ecb744de6d50:/root/
+    - docker cp bash.sh  d78368f12da6:/root/
     #开始编译arm上的nros
     - docker run --rm --privileged multiarch/qemu-user-static:register --reset
     - docker start humnpu
