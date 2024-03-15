@@ -17,6 +17,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build -f Dockerfile.humble -t ${{ secrets.DOCKERHUB_USERNAME }}/ros2code:humble .
+      run: docker build -f Dockerfile.humble -t nros:0.9 .
     - name: Docker image push
-      run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/ros2code:humble
+      run: docker push nros:0.9
