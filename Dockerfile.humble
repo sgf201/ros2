@@ -1,0 +1,63 @@
+FROM ubuntu:jammy
+
+RUN echo "chooses:\n" > fish_install.yaml \
+    && echo "- {choose: 5, desc: '一键安装:ROS(支持ROS和ROS2,树莓派Jetson)'}\n" >> fish_install.yaml \
+    && echo "- {choose: 2, desc: 更换源继续安装}\n" >> fish_install.yaml \
+    && echo "- {choose: 1, desc: 清理三方源}\n" >> fish_install.yaml \
+    && apt update && apt install wget python3 python3-distro python3-yaml -y \
+    && wget http://fishros.com/install  -O fishros && /bin/bash fishros \
+    && rm -rf /var/lib/apt/lists/*  /tmp/* /var/tmp/* \
+    && apt-get clean && apt autoclean \
+    && rm -rf fish_install.yaml
+
+
+RUN sudo apt update && sudo apt install locales && \
+    sudo locale-gen en_US en_US.UTF-8 && \
+    sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8 && \
+    export LANG=en_US.UTF-8
+
+RUN DEBIAN_FRONTEND=noninteractive apt install -y tzdata
+RUN sudo apt update && sudo apt install -y \
+    build-essential \
+    cmake \
+    git \
+    python3-colcon-common-extensions \
+    python3-flake8 \
+    python3-flake8-docstrings \
+    python3-pip \
+    python3-pytest \
+    python3-pytest-cov \
+    python3-rosdep \
+    python3-setuptools \
+    python3-vcstool \
+    wget \
+    libacl1-dev
+
+
+RUN sudo apt install -y \
+    python3-flake8-blind-except \
+    python3-flake8-builtins \
+    python3-flake8-class-newline \
+    python3-flake8-comprehensions \
+    python3-flake8-deprecated \
+    python3-flake8-import-order \
+    python3-flake8-quotes \
+    python3-pytest-repeat \
+    python3-pytest-rerunfailures
+
+RUN mkdir -p ~/ros2_humble/src && \
+    cd ~/ros2_humble  && \
+    vcs import --input https://github.com/sgf201/ros2/blob/humble-2309/ros2.repos src
+
+RUN sudo apt install python3-pip && \
+    sudo pip3 install rosdep && \
+    sudo rosdep init && \
+    rosdep update && \
+    cd ~/ros2_humble  && \
+    rosdep install --from-paths src --ignore-src -y --skip-keys "fastcdr rti-connext-dds-6.0.1 urdfdom_headers"
+
+RUN cd ~/ros2_humble/ && \
+    colcon build --cmake-args -DCMAKE_BUILD_TYPE=Debug --symlink-install
+
+
+# Ref: https://docs.ros.org/en/humble/Installation/Alternatives/Ubuntu-Development-Setup.html
