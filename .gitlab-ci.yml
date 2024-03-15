@@ -21,9 +21,6 @@ deploy:
     #开始编译x86上的nros
     - docker exec x86_compiler /root/bash.sh
     - echo "done!"
-    #删除重复的压缩包
-    - rm /public/ReleaseMiddleWare/R1nrosInstall-$(date +%Y%m).tar.gz 
-    - rm /public/ReleaseMiddleWare/x86_nros_install-$(date +%Y%m).tar.gz 
     #复制docker文件夹的内容到public做准备
     - docker cp 735ed56afa2b:/opt/R1nrosInstall-$(date +%Y%m).tar.gz /public/ReleaseMiddleWare
     - docker cp d78368f12da6:/opt/x86_nros_install-$(date +%Y%m).tar.gz /public/ReleaseMiddleWare
