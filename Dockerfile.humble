@@ -1,4 +1,5 @@
 FROM ubuntu:jammy
+COPY ros2.repos /
 
 RUN echo "chooses:\n" > fish_install.yaml \
     && echo "- {choose: 5, desc: '一键安装:ROS(支持ROS和ROS2,树莓派Jetson)'}\n" >> fish_install.yaml \
@@ -44,9 +45,9 @@ RUN sudo apt install -y \
     python3-flake8-quotes \
     python3-pytest-repeat \
     python3-pytest-rerunfailures
-COPY ros2.repos ~/
+
 RUN mkdir -p ~/ros2_humble/src && \
-    cp ros2.repos ~/ros2_humble && \
+    cp /ros2.repos ~/ros2_humble/ && \
     cd ~/ros2_humble  && \
     vcs import --input ros2.repos src
 
