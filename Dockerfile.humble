@@ -46,6 +46,7 @@ RUN sudo apt install -y \
     python3-pytest-rerunfailures
 
 RUN mkdir -p ~/ros2_humble/src && \
+    cp ros2.repos ~/ros2_humble && \
     cd ~/ros2_humble  && \
     vcs import --input ros2.repos src
 
