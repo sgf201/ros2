@@ -1,5 +1,6 @@
 
 name: Docker Image CI
+
 on:
   push:
     branches: [ "humble-2309" ]
@@ -7,7 +8,7 @@ on:
     branches: [ "humble-2309" ]
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux,x86]
     steps:
     - name: Docker login
       uses: docker/login-action@v1
