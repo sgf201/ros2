@@ -44,7 +44,7 @@ RUN sudo apt install -y \
     python3-flake8-quotes \
     python3-pytest-repeat \
     python3-pytest-rerunfailures
-
+COPY ros2.repos ~/
 RUN mkdir -p ~/ros2_humble/src && \
     cp ros2.repos ~/ros2_humble && \
     cd ~/ros2_humble  && \
